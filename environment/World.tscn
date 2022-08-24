@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://environment/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://environment/World.gd" type="Script" id=3]
+[ext_resource path="res://environment/Hazards/Spikes.tscn" type="PackedScene" id=4]
+[ext_resource path="res://environment/Hazards/Stalactites.tscn" type="PackedScene" id=5]
+[ext_resource path="res://environment/Hazards/Stalagmites.tscn" type="PackedScene" id=6]
+[ext_resource path="res://actors/Enemy/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://actors/Enemy/EnemyWithHelmet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://environment/Ladder.tscn" type="PackedScene" id=9]
+[ext_resource path="res://environment/BottomBoundsArea.tscn" type="PackedScene" id=10]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 376.0 ],
+"_edit_vertical_guides_": [ 251.0 ]
+}
+
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( 65550, 5, 0, 65551, 5, 2, 196625, 5, 0, 196626, 5, 1, 196627, 5, 2, 262182, 5, 0, 262183, 5, 1, 262184, 5, 1, 262185, 5, 1, 262186, 5, 1, 262187, 5, 2, 327694, 1, 0, 327695, 1, 2, 327697, 1, 0, 327698, 1, 1, 327699, 1, 1, 327700, 1, 1, 327701, 1, 1, 327702, 1, 1, 327703, 1, 1, 327704, 1, 1, 327705, 1, 1, 327706, 1, 2, 393218, 1, 0, 393219, 1, 1, 393220, 1, 1, 393221, 1, 1, 393222, 1, 1, 393223, 1, 1, 393224, 1, 1, 393225, 1, 1, 393226, 1, 1, 393227, 1, 1, 393228, 1, 1, 393229, 1, 2, 393232, 1, 0, 393243, 1, 0, 393244, 1, 1, 393245, 1, 1, 393246, 1, 1, 393247, 1, 1, 393248, 1, 1, 393249, 1, 1, 393250, 1, 1, 393251, 1, 2, 458754, 2, 0, 458788, 1, 0, 458789, 1, 1, 458790, 1, 1, 458791, 1, 2 )
+
+[node name="Spikes" parent="." instance=ExtResource( 4 )]
+position = Vector2( 150, 92 )
+
+[node name="Stalagmites" parent="Spikes" instance=ExtResource( 6 )]
+position = Vector2( 18, -1 )
+
+[node name="Spikes2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 134, 92 )
+
+[node name="Stalactites3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 240, 32 )
+
+[node name="Stalactites4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 288, 64 )
+
+[node name="Stalactites5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 304, 64 )
+
+[node name="EnemyWithHelmet" parent="." instance=ExtResource( 8 )]
+position = Vector2( 184, 96 )
+
+[node name="EnemyWithHelmet2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 398, 80 )
+
+[node name="Enemy" parent="." instance=ExtResource( 7 )]
+position = Vector2( 311, 49 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 381, 80 )
+
+[node name="Enemy6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 552, 96 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 628, 64 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_speed = 2.0
+
+[node name="BottomBounds" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="BottomBoundsArea" parent="BottomBounds" instance=ExtResource( 10 )]
+
+[node name="Ladder" parent="." instance=ExtResource( 9 )]
+position = Vector2( 106, 88 )
+
+[node name="Ladder2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 106, 72 )
+
+[node name="Ladder3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 106, 56 )
+
+[node name="Ladder4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 106, 40 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 69, 72 )
+z_index = 100
+
+[connection signal="body_entered" from="BottomBounds" to="." method="_on_BottomBounds_body_entered"]
